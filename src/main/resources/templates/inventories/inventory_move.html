@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index page design</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<!-- HEADER -->
+<div th:insert="header :: header"></div>
+<div class="row">
+    <!-- SIDE BAR -->
+    <div th:insert="sidebar :: sidebar" class="col-2"></div>
+    <!-- MAIN CONTENT -->
+    <div class="col-10 bg-success text-dark bg-gradient bg-opacity-10">
+        <div class="my-3 p-3 me-3 bg-body rounded shadow-sm">
+            <h1>창고 이동</h1>
+            <hr/>
+            <div class="container">
+                <form action="/inventories/move" method="POST">
+                    <div class="row">
+                        <div class="col-2">
+                            <select class="form-select" size="10" aria-label="Size 10 select example"
+                                    name="departureStorageSelect">
+                                <option th:each="storage : ${storages}" th:value="${storage.getStorageId}"
+                                        th:text="${storage.getStorageName}"></option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <select class="form-select col-2" size="10" aria-label="Size 10 select example"
+                                    name="itemSelect">
+                                <option th:each="item : ${items}" th:value="${item.getItemId}"
+                                        th:text="${item.getItemName}"></option>
+                            </select>
+                        </div>
+                        <div class="container col-1 text-center" style="display: flex; align-items: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                 class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                <path fill-rule="evenodd"
+                                      d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                        <div class="col-2">
+                            <select class="form-select" size="10" aria-label="Size 10 select example"
+                                    name="destinationStorageSelect">
+                                <option th:each="storage : ${storages}" th:value="${storage.getStorageId}"
+                                        th:text="${storage.getStorageName}"></option>
+                            </select>
+                        </div>
+                        <div class="col-4" style="display: flex; align-items: center;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <button type="button" class="btn btn-outline-danger" id="decreaseButton"
+                                                style="width:100%">-
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="number" name="moveQuantity" id="quantityField"
+                                               class="form-control text-center" min="0" value="0" style="width:100%">
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="btn btn-outline-success" id="increaseButton"
+                                                style="width:100%">+
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-3">이동</button>
+                </form>
+            </div>
+            <hr/>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('decreaseButton').addEventListener("click", function() {
+    var quantityField = document.getElementById('quantityField');
+    var quantity = parseInt(quantityField.value);
+    if( quantity > 0 ) {
+    quantityField.value = --quantity;
+    }
+  });
+  document.getElementById('increaseButton').addEventListener("click", function() {
+    var quantityField = document.getElementById('quantityField');
+    var quantity = parseInt(quantityField.value);
+    quantityField.value = ++quantity;
+  });
+</script>
+</html>

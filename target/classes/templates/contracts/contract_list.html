@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index page design</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!--  FOR CHART  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+</head>
+<body>
+<!-- HEADER -->
+<div th:insert="header :: header"></div>
+<div class="row">
+    <!-- SIDE BAR -->
+    <div th:insert="sidebar :: sidebar" class="col-2"></div>
+    <!-- MAIN CONTENT -->
+    <div class="col-10 bg-success text-dark bg-gradient bg-opacity-10">
+        <div class="my-3 p-3 me-3 bg-body rounded shadow-sm">
+            <h1 th:text="${contract_dto_list.get(0).isSelling} ? '판매 현항' : '구매 현황'"></h1>
+            <hr/>
+            <div class="overflow-auto" style="height: 50vh;">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>거래 번호</th>
+                        <th>거래 구분</th>
+                        <th>담당자</th>
+                        <th>거래처</th>
+                        <th>품목 이름</th>
+                        <th>품목 수량</th>
+                        <th>총 가격</th>
+                        <th>창고</th>
+                        <th>거래 날짜</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="contractDto: ${contract_dto_list}">
+                        <td th:text="${contractDto.getContractId}"></td>
+                        <td th:text="${contractDto.isSelling ? '판매' : '구매'}"></td>
+                        <td th:text="${contractDto.getResponsibleEmployeeName}"></td>
+                        <td th:text="${contractDto.getBusinessPartnerName}"></td>
+                        <td th:text="${contractDto.getItemName}"></td>
+                        <td th:text="${contractDto.getItemQuantity}"></td>
+                        <td th:text="${#numbers.formatCurrency(contractDto.getTotalPrice)}"></td>
+                        <td th:text="${contractDto.getStorageName}"></td>
+                        <td th:text="${contractDto.getContractDate}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <a th:href="@{*{contract_dto_list.get(0).isSelling} ? '/contract/sell' : '/contract/purchase'}"
+               class="btn btn-success"
+               th:text="${contract_dto_list.get(0).isSelling} ? '판매 등록' : '구매 등록'">구매/판매 등록</a>
+
+        </div>
+        <div class="container pa-3">
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="myChart1"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>

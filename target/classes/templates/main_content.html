@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="main_content">
+    <div class="my-3 p-3 me-3 bg-body rounded shadow-sm border">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="card-container border">
+                    <canvas id="bondChart"></canvas>
+                    <script th:inline="javascript">
+              /*<![CDATA[*/
+              const ctx1 = document
+                .getElementById("bondChart")
+                .getContext("2d");
+
+              // Extracting data from the model
+              const businessPartnersBond =
+                /*[[${bondDtoList.![businessPartnerName]}]]*/ [];
+              const totalBondAmounts = /*[[${bondDtoList.![totalAmount]}]]*/ [];
+
+              const bondChart = new Chart(ctx1, {
+                type: "bar",
+                data: {
+                  labels: businessPartnersBond,
+                  datasets: [
+                    {
+                      label: "총 채권액",
+                      data: totalBondAmounts,
+                      backgroundColor: [
+                        "rgba(255, 99, 132, 0.2)",
+                        "rgba(54, 162, 235, 0.2)",
+                        "rgba(255, 206, 86, 0.2)",
+                        "rgba(75, 192, 192, 0.2)",
+                        "rgba(153, 102, 255, 0.2)",
+                        "rgba(255, 159, 64, 0.2)",
+                      ],
+                      borderColor: [
+                        "rgba(255, 99, 132, 1)",
+                        "rgba(54, 162, 235, 1)",
+                        "rgba(255, 206, 86, 1)",
+                        "rgba(75, 192, 192, 1)",
+                        "rgba(153, 102, 255, 1)",
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: "거래처별 채권 "
+                    },
+                  },
+                },
+              });
+              /*]]>*/
+
+                    </script>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="card-container border">
+                    <canvas id="deptChart"></canvas>
+                    <script th:inline="javascript">
+              /*<![CDATA[*/
+              const ctx2 = document
+                .getElementById("deptChart")
+                .getContext("2d");
+
+              // Extracting data from the model
+              const businessPartnersDept =
+                /*[[${DebtDtoList.![businessPartnerName]}]]*/ [];
+              const totalDeptAmounts = /*[[${DebtDtoList.![totalAmount]}]]*/ [];
+
+              const deptChart = new Chart(ctx2, {
+                type: "bar",
+                data: {
+                  labels: businessPartnersDept,
+                  datasets: [
+                    {
+                      label: "총 채무액",
+                      data: totalDeptAmounts,
+                      backgroundColor: [
+                        "rgba(255, 99, 132, 0.2)",
+                        "rgba(54, 162, 235, 0.2)",
+                        "rgba(255, 206, 86, 0.2)",
+                        "rgba(75, 192, 192, 0.2)",
+                        "rgba(153, 102, 255, 0.2)",
+                        "rgba(255, 159, 64, 0.2)",
+                      ],
+                      borderColor: [
+                        "rgba(255, 99, 132, 1)",
+                        "rgba(54, 162, 235, 1)",
+                        "rgba(255, 206, 86, 1)",
+                        "rgba(75, 192, 192, 1)",
+                        "rgba(153, 102, 255, 1)",
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: "거래처별 채무 "
+                    },
+                  },
+                },
+              });
+              /*]]>*/
+
+                    </script>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card-container border">
+                    <canvas id="PartnersSalesAmountsChart"></canvas>
+                    <script th:inline="javascript">
+              /*<![CDATA[*/
+              const ctx3 = document
+                .getElementById("PartnersSalesAmountsChart")
+                .getContext("2d");
+
+              // Extracting data from the model
+              const partnersSalesAmounts =
+                /*[[${businessPartnerSalesAmounts.![businessPartnerName]}]]*/ [];
+              const totalSalesAmounts =
+                /*[[${businessPartnerSalesAmounts.![totalAmount]}]]*/ [];
+
+              const PartnersSalesAmountsChart = new Chart(ctx3, {
+                type: "bar",
+                data: {
+                  labels: partnersSalesAmounts,
+                  datasets: [
+                    {
+                      label: "총 판매액",
+                      data: totalSalesAmounts,
+                      backgroundColor: [
+                        "rgba(255, 99, 132, 0.2)",
+                        "rgba(54, 162, 235, 0.2)",
+                        "rgba(255, 206, 86, 0.2)",
+                        "rgba(75, 192, 192, 0.2)",
+                        "rgba(153, 102, 255, 0.2)",
+                        "rgba(255, 159, 64, 0.2)",
+                      ],
+                      borderColor: [
+                        "rgba(255, 99, 132, 1)",
+                        "rgba(54, 162, 235, 1)",
+                        "rgba(255, 206, 86, 1)",
+                        "rgba(75, 192, 192, 1)",
+                        "rgba(153, 102, 255, 1)",
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: "거래처별 총 판매액 "
+                    },
+                  },
+                },
+              });
+              /*]]>*/
+
+                    </script>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card-container border">
+                    <canvas id="totalSalesProductQuantityChart"></canvas>
+                    <script th:inline="javascript">
+    /*<![CDATA[*/
+    const ctx4 = document.getElementById('totalSalesProductQuantityChart').getContext('2d');
+
+    // Extracting data from the model
+    const itemName = /*[[${totalSalesProductQuantityList.![itemName]}]]*/ [];
+    const itemQuantity = /*[[${totalSalesProductQuantityList.![itemQuantity]}]]*/ [];
+
+
+    const totalSalesProductQuantityChart = new Chart(ctx4, {
+        type: 'pie', // Change to 'pie' for a pie chart
+        data: {
+            labels: itemName,
+            datasets: [{
+                data: itemQuantity,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+        maintainAspectRatio: false, // true로 유지하면 차트의 크기가 유지됩니다.
+            cutout: '50%', // '0%'에서 '100%'까지의 값을 사용하여 지름 조절
+            // Remove scales for a pie chart
+            // scales: {
+            //     y: {
+            //         beginAtZero: true
+            //     }
+            // }
+        },
+      
+
+
+
+    });
+    /*]]>*/
+
+
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header" class="p-3 bg-success bg-gradient text-white">
+    <div class="container" >
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <h1>ERP</h1>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-3 justify-content-center mb-md-0">
+                <li><a href="/employees" class="nav-link px-2 text-white ms-4 fs-5">기초 등록</a></li>
+                <li><a href="/contracts_purchase" class="nav-link px-2 text-white ms-4 fs-5">구매 관리</a></li>
+                <li><a href="/productions" class="nav-link px-2 text-white ms-4 fs-5">생산 관리</a></li>
+                <li><a href="/contracts_sell" class="nav-link px-2 text-white ms-4 fs-5">판매 관리</a></li>
+                <li><a href="/transfers" class="nav-link px-2 text-white ms-4 fs-5">회계 관리</a></li>
+                <li><a href="/inventories" class="nav-link px-2 text-white ms-4 fs-5">재고 관리</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+</html>

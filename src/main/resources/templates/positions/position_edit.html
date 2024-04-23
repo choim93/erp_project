@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index page design</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<!-- HEADER-->
+<div th:insert="header :: header"></div>
+<div class="row">
+    <!-- SIDE BAR-->
+    <div th:insert="sidebar :: sidebar" class="col-2"></div>
+    <!-- MAIN CONTENT-->
+    <div class="col-10 bg-success text-dark bg-gradient bg-opacity-10">
+        <div class="my-3 p-3 me-3 bg-body rounded shadow-sm">
+            <h1>직급 정보 수정</h1>
+            <hr/>
+            <form method="POST" id="editForm">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="position_id" name="new_position_id"
+                           aria-describedby="emailHelp" th:value="${selectedPosition.getPositionId}" } hidden>
+                </div>
+                <div class="mb-3">
+                    <label for="position_name" class="form-label">직급 이름</label>
+                    <input type="text" class="form-control" id="position_name" name="new_position_name"
+                           th:value="${selectedPosition.getPositionName}">
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="수정"></input>
+            </form>
+            <hr/>
+            <form id="deleteForm" method="POST">
+                <input type="submit" class="btn btn-danger" value="삭제"></input>
+            </form>
+            <script th:inline="javascript">
+            /*<![CDATA[*/
+            document.getElementById('editForm').action = '/position/edit/' + /*[(${selectedPosition.getPositionId})]*/ '';
+            document.getElementById('deleteForm').action = '/position/delete/' + /*[(${selectedPosition.getPositionId})]*/ '';
+            /*]]>*/
+
+            </script>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</html>

@@ -1,0 +1,32 @@
+.navbar {
+    display: flex;
+    justify-content: center;    /* horizontally centered */
+    align-items: center;        /* verticallycgasdr centered */
+    height: 100px;
+    background-color: aqua;
+}
+.card-container {
+        width: 100%;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+    }
+.container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    background-color: yellow;
+    text-align: center;
+}
+
+.sidebar {
+    /* background-color: pink; */
+    height: 100vh;
+    text-align: center;
+}
+
+.main-section{
+    /* background-color: green; */
+    height: 100vh;
+    text-align: center;
+}

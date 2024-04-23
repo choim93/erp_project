@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- your head content -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+</head>
+
+<body>
+<!-- your body content -->
+
+<canvas id="myChart"></canvas>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    // Extracting data from the model
+    const itemName = /*[[${totalSalesProductQuantityList.![itemName]}]]*/ [];
+    const itemQuantity = /*[[${totalSalesProductQuantityList.![itemQuantity]}]]*/ [];
+
+
+    const myChart = new Chart(ctx, {
+        type: 'pie', // Change to 'pie' for a pie chart
+        data: {
+            labels: itemName,
+            datasets: [{
+                data: itemQuantity,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+        maintainAspectRatio: false, // true로 유지하면 차트의 크기가 유지됩니다.
+            cutout: '50%', // '0%'에서 '100%'까지의 값을 사용하여 지름 조절
+            // Remove scales for a pie chart
+            // scales: {
+            //     y: {
+            //         beginAtZero: true
+            //     }
+            // }
+        }
+    });
+    /*]]>*/
+
+</script>
+
+</body>
+
+</html>

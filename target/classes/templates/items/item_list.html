@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index page design</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<!-- HEADER -->
+<div th:insert="header :: header"></div>
+<div class="row">
+    <!-- SIDE BAR -->
+    <div th:insert="sidebar :: sidebar" class="col-2"></div>
+    <!-- MAIN CONTENT-->
+    <div class="col-10 bg-success text-dark bg-gradient bg-opacity-10">
+        <div class="my-3 p-3 me-3 bg-body rounded shadow-sm">
+            <h1>품목 목록</h1>
+            <hr/>
+            <div class="overflow-auto" style="height: 60vh;">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>품목 번호</th>
+                        <th>품목 구분</th>
+                        <th>품목 이름</th>
+                        <th>단가</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item: ${item_list}">
+                        <td th:text="${item.getItemId}"></td>
+                        <td th:text="${item.isRawMaterial == false ? '제품' : '원재료'}"></td>
+                        <td><a th:href="@{'item/edit/' + ${item.getItemId}}" th:text="${item.getItemName}"
+                               style="text-decoration: none"></a></td>
+                        <td th:text="${#numbers.formatCurrency(item.getItemPrice)}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr/>
+            <a href="/item/add" class="btn btn-success">품목 등록</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</html>

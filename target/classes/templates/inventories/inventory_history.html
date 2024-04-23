@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index page design</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<!-- HEADER-->
+<div th:insert="header :: header"></div>
+<div class="row">
+    <!-- SIDE BAR-->
+    <div th:insert="sidebar :: sidebar" class="col-2"></div>
+    <!-- MAIN CONTENT -->
+    <div class="col-10 bg-success text-dark bg-gradient bg-opacity-10">
+        <div class="my-3 p-3 me-3 bg-body rounded shadow-sm">
+            <h1>창고별 재고 증감 내역</h1>
+            <hr/>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <td>창고이름</td>
+                    <td>제품/원재료 명</td>
+                    <td>수량</td>
+                    <td>수량 변경 이유</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="inventoryHistory : ${inventoryHistoryList}">
+                    <td th:text="${inventoryHistory.getStorageName}"></td>
+                    <td th:text="${inventoryHistory.getItemName}"></td>
+                    <td th:text="${inventoryHistory.getItemQuantity}"></td>
+                    <td th:text="${inventoryHistory.getDescription}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</html>
